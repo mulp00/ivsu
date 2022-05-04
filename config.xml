@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="cz.ivsu.ivsuTest01" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>IVSU</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="https://cordova.io">
+        Apache Cordova Team
+    </author>
+
+    <!-- Allow links to ivsu.cz -->
+    <allow-navigation href="https://www.ivsu.cz/*" />
+
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="https://maps.googleapis.com" />
+
+    <allow-intent href="https://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <!--
+            ldpi    : 36x36 px
+            mdpi    : 48x48 px
+            hdpi    : 72x72 px
+            xhdpi   : 96x96 px
+            xxhdpi  : 144x144 px
+            xxxhdpi : 192x192 px
+        -->
+        <icon src="appicon/icon-72x72.png" density="hdpi" />
+        <icon src="appicon/icon-96x96.png" density="xhdpi" />
+        <icon src="appicon/icon-144x144.png" density="xxhdpi" />
+        <icon src="appicon/icon-192x192.png" density="xxxhdpi" />
+
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+
+
+</widget>
