@@ -1,5 +1,4 @@
 let UUID = "bd9bf59d-8cf7-4db5-9c1f-6ae4379d3cbf" //Globalní UUID
-//let counter = 0;
 let locationDelay = new Date(1950).getTime();
 let latestLocation = {lat: null, lon: null, address: null, time: null};
 let que = [];
@@ -18,16 +17,12 @@ let app = {
         onDeviceReady: function () {
 
 
-            //document.addEventListener("offline", app.goOffline, false);
-            //document.addEventListener("online", app.goOnline, false);
-            app.goOnline();
-
-
+            document.addEventListener("offline", app.goOffline, false);
+            document.addEventListener("online", app.goOnline, false);
 
 
         },
         goOffline: function () {
-            console.log("fire");
             window.location = "index.html";
             app.onDeviceReady();
         },
@@ -63,7 +58,7 @@ let app = {
             }, 8000);
         },
         refreshDeviceList: function () {
-            ref.executeScript({code: "window.beaconsArr = []; beaconHandler();"});//TODO updateBeaconsList();
+            ref.executeScript({code: "window.beaconsArr = []; beaconHandler();"});
             window.plugins.mockgpschecker.check(app.mockLocSuccessCallback, app.mockLocErrorCallback);
 
         },
@@ -82,7 +77,6 @@ let app = {
         onDiscoverDevice: function (device) {
             let id_beacon;
 
-            //counter++; //TODO smazat, jen pro debagovaci ucely
 
             //pri zjisteni beaconu aktualizace polohy pokud je starsi nez 30s
             if (new Date().getTime() - locationDelay > 30000) {
@@ -98,20 +92,7 @@ let app = {
             let adData = new Uint8Array(device.advertising)
             id_beacon = app.toHexString(new Uint8Array(app.parseAdvertisingData(adData)["0x21"])).replace(app.toHexString(new Uint8Array(app.parseAdvertisingData(adData)["0x07"])), '');
 
-            //pridani beaconu do seznamu na UI
-            /*let listItem =
-                '<li><b>' +
-                device.name +
-                '</b><br/>' +
-                'RSSI: ' +
-                device.rssi +
-                '&nbsp;|&nbsp;' +
-                id_beacon +
-                '<br>' +
-                new Date().toLocaleString() +
-                '</li>';*/
-
-
+           
             ref.executeScript({code:
                     "window.beaconsArr.push(['"
                     +device.name
@@ -121,13 +102,13 @@ let app = {
                     +id_beacon
                     +"','"
                     +new Date().toLocaleString()
-                    +"']); "});//TODO updateBeaconsList();
+                    +"']); "});
             ref.executeScript({code:
                     "window.beaconsArr.push(['DLG-noTest','"
                     +device.rssi
                     +"','12345678901bae3d23b728ce93','"
                     +new Date().toLocaleString()
-                    +"']); "});//TODO updateBeaconsList();
+                    +"']); "});
             ref.executeScript({code: "beaconHandler();"})
             console.log("takco");
 
